@@ -1,0 +1,102 @@
+﻿@model List<EventViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Açıklama</th>
+        <th>Tarih</th>
+        <th>Adres</th>
+        <th>Kontenjan</th>
+        <th>Şehir</th>
+        <th>Kategori</th>
+        <th>Oluşturan Kullanıcı</th>
+        <th>Statü</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Admin Onay İşlemi</th>
+        <th></th>
+        <th>Etkinlik İptal Et</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        DateTime itemDate = item.Date.Date;
+        DateTime currentDate = DateTime.Now.Date;
+        DateTime futureDate = currentDate.AddDays(5);
+
+        <tr>
+            <td>@item.EventId</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td>@item.Date.ToString("yyyy-MM-dd")</td>
+            <td>@item.Address</td>
+            <td>@item.Capacity</td>
+            <td>@item.CityName</td>
+            <td>@item.CategoryName</td>
+            <td>@item.FullName</td>
+            <td>@item.Status</td>
+            @if (item.Status == "Reddedildi" || item.Status == "Süresi Doldu")
+            {
+                <td><a href="/Event/DeleteEvent/@item.EventId" class="btn btn-danger">Sil</a></td>
+            }
+            else
+            {
+                <td>Silme Devre Dışı</td>
+            }
+            @if (item.Status == "Onaylandı" && itemDate >= futureDate)
+            {
+                <td><a href="/Event/UpdateEvent/@item.EventId" class="btn btn-success">Güncelle</a></td>
+            }
+            else
+            {
+                <td>Güncellenemez</td>
+            }
+
+            @if (item.Status == "Onay Bekliyor")
+            {
+                <td><a href="/Event/AdminApprove/@item.EventId" class="btn btn-outline-success">Onayla</a></td>
+                <td><a href="/Event/AdminRefuse/@item.EventId" class="btn btn-outline-danger">Reddet</a></td>
+
+            }
+            else
+            {
+                <td>@item.Status</td>
+                <td> </td>
+                
+            }
+            @if (item.Status != "Onay Bekliyor" && item.Status !="Reddedildi")
+            {
+                
+                if (itemDate <= futureDate)
+                {
+                    <td>Etkinlik 5 gün kala iptal edilemez</td>
+                }
+                else
+                {
+                    <td><a href="/Event/EventCancel/@item.EventId" class="btn btn-outline-dark">Etkinliği İptal Et</a></td>
+                }
+               
+            }
+            else
+            {
+                <td>Etkinlik onayı gerekiyor</td>
+            }
+
+
+        </tr>
+    }
+</table>
+<span>** Sadece Reddedilen ve süresi dolan etkinlikler silinebilir</span>
+<br />
+<span>** Etkinlikler 5 gün kala iptal edilemez ve güncellenemez</span>
+<br />
+<span>** Reddedilen ve silinen işlemleri geri alınamaz ve düzenlenemez</span>
+<br />
+<a href="/Event/AddEvent" class="btn btn-info mt-2">Yeni Etkinlik Oluştur</a>
+
+
+

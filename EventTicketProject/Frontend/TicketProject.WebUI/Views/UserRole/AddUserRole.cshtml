@@ -1,0 +1,14 @@
+﻿@model AddRoleModel
+@{
+    ViewData["Title"] = "AddUserRole";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <label>Yetki verilecek kullanıcı Id'si'</label>
+    <input type="text" asp-for="UserId" class="form-control mb-2" />
+    <span asp-validation-for="UserId" class="text-danger"></span>
+    <button class="btn btn-primary">Ekle</button>
+
+</form>
+

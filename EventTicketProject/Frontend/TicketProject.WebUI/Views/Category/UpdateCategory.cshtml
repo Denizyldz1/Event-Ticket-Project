@@ -1,0 +1,15 @@
+﻿@model UpdateCategoryViewModel
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    @Html.HiddenFor(x=>x.CategoryId)
+    <label>Kategori Adı</label>
+    <input type="text" asp-for="CategoryName" class="form-control mb-2" />
+    <span asp-validation-for="CategoryName" class="text-danger"></span>
+    <button class="btn btn-primary">Güncelle</button>
+
+</form>
+

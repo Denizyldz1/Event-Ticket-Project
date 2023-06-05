@@ -1,0 +1,26 @@
+﻿@if (ViewBag.UserInformation != null)
+{
+    var userInformation = ViewBag.UserInformation as string;
+    var splitNameSurname = userInformation.Split(' ');
+    var name = splitNameSurname[0];
+    var surname = splitNameSurname[1];
+    var id = splitNameSurname[2];
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @name @surname
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/Login/Profile/@id">Profil Görüntüle</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/Login/LogOut">Çıkış Yap</a></li>
+        </ul>
+    </li>
+
+
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link" href="/Login/Index">Log In</a>
+    </li>
+}

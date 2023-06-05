@@ -1,0 +1,15 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container px-5">
+        <a class="navbar-brand" asp-area="" asp-controller="Default" asp-action="Index">Etkinlik Organizasyonu</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/Default/Index">Tüm Etkinlikler</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Default/AddEvent">Etkinlik Oluştur</a></li>
+                @await Component.InvokeAsync("_PanelUserInfo")
+                <li class="nav-item"><a class="nav-link" href="/Category/Index">Yönetici Girişi</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Ticket/TicketControl">Bilet Sorgula</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

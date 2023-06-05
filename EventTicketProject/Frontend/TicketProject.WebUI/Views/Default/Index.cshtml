@@ -1,0 +1,109 @@
+﻿@model List<EventViewModel>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="blog" id="blog">
+	<div class="container mt-4 d-flex flex-column">
+		@if (ViewBag.ErrorMessage == null)
+		{
+				<div class="row">
+					<div class="col">
+						<button type="button" class="btn btn-secondary btn-lg">Tüm Etkinlikleri Görüntüle</button>
+					</div>
+					<div class="col">
+					<div class="btn-group">
+						<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Kategori Seçiniz
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Separated link</a>
+						</div>
+					</div>
+					</div>
+					<div class="col">
+					<div class="btn-group">
+						<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Şehir Seçiniz
+						</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Separated link</a>
+						</div>
+					</div>
+					</div>
+				</div>
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					if (@item.Status == "Onaylandı")
+					{
+					
+						<div class="card m-3" style="width: 18rem;">
+							<img class="card-img-top" src="https://blog.obilet.com/wp-content/uploads/2023/04/image-13-1024x511.png" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">@item.Title</h5>
+								<p class="card-text">Kategori : @item.CategoryName</p>
+								<p class="card-text">Şehir : @item.CityName</p>
+								<p class="card-text">Etkinlik Sahibi : @item.FullName</p>
+								<a href="#" data-toggle="modal" data-target="#@item.EventId" class="btn btn-primary">Detayları görüntüle</a>
+							</div>
+						</div>
+					
+					}
+				}
+			</div>
+				}
+				else
+				{
+			<div class="row">
+				<span>Aktif organizasyon bulunamadı</span>
+			</div>
+				}
+
+
+	</div>
+</div>
+@if (ViewBag.Errormessage == null)
+{
+	@foreach (var item in Model)
+	{
+		if (@item.Status == "Onaylandı")
+		{
+			<div class="modal fade bd-example-modal-lg" id="@item.EventId" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header d-flex flex-column">
+							<img class="img-fluid mb-3" src="https://blog.obilet.com/wp-content/uploads/2023/04/image-13-1024x511.png" alt="...">
+							<h5>@item.Title</h5>
+							<p>@item.Description</p>
+
+						</div>
+						<div class="modal-body">
+							<p class="card-text">Kategori : @item.CategoryName</p>
+							<p class="card-text">Şehir : @item.CityName</p>
+							<p class="card-text">Etkinlik Sahibi : @item.FullName</p>
+							<p class="card-text">Etkinlik Tarihi: @item.Date.ToString("dd.MM.yyyy")</p>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+							<a href="/Ticket/AddTicket/@item.EventId" class="btn btn-primary">Bilet Al</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		}
+	}
+}
+

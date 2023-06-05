@@ -1,0 +1,40 @@
+﻿@model List<TicketViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Organizasyon Adı</th>
+        <th>İsim Soyisim</th>
+        <th>Etkinlik Tarihi</th>
+        <th>TicketNumber</th>
+        <th>Statü</th>
+        <th>GÜncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.TicketId</th>
+            <th>@item.Title</th>
+            <th>@item.NameSurname</th>
+            <th>@item.Date.ToString("yyyy-MM-dd")</th>           
+            <td>@item.TicketNumber</td>
+            <td>@item.Status</td>
+            @if (@item.Status == true)
+            {
+                <td><a href="/Ticket/TicketCancel/@item.TicketId" class="btn btn-success">İptal Et</a></td>
+            }
+            else
+            {
+                <td>İptal Edildi</td>
+            }
+
+        </tr>
+    }
+</table>
+<span>**** İptal edilen bilet işlemi geri alınamaz</span>
+
+

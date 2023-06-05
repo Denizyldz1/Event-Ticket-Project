@@ -1,0 +1,47 @@
+﻿@model List<UserRoleViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+
+<h3>Bu tabloda sadece "Yetkili" rolünü görebilir ve işlem yapabilirsin</h3>
+<br />
+@if(ViewBag.ErrorMessage == null)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Adı</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Rolü Kaldır</th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name @item.Surname</td>
+                <td>@item.Email</td>
+                <td>Yetkili</td>
+                <td><a href="/UserRole/GetToRole/@item.Id" class="btn btn-danger">Rolü Kaldır</a></td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <span>
+        Yetkili rolüne sahip kullanıcı mevcut değil.
+    </span>
+}
+
+<br />
+<span>***Rol atama işlemi için kullanıcı sayfasında role atanacak kullanıcının Id sini kopyala</span>
+<br />
+<a href="/UserRole/AddUserRole" class="btn btn-info">Yeni Role Ataması Yap</a>
+
+
+
+

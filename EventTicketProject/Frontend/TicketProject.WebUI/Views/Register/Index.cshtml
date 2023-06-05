@@ -1,0 +1,81 @@
+﻿@model AddUserViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--*******************
+    Preloader start
+********************-->
+<div id="preloader">
+    <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+        </svg>
+    </div>
+</div>
+<!--*******************
+    Preloader end
+********************-->
+
+
+<div class="login-form-bg h-100">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-xl-6">
+                <div class="form-input-content">
+                    <div class="card login-form mb-0">
+                        <div class="card-body pt-5">
+
+                            <a class="text-center" href="index.html"> <h4>Organizasyon giriş Paneli</h4></a>
+
+                            <form class="mt-5 mb-5 login-input" method="post">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="İsim" asp-for="Name">
+                                    <span asp-validation-for="Name" class="text-warning"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Soyisim" asp-for="Surname">
+                                    <span asp-validation-for="Surname" class="text-warning"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email" asp-for="Email">
+                                    <span asp-validation-for="Email" class="text-warning"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Adres" asp-for="Address">
+                                    <span asp-validation-for="Address" class="text-warning"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Şifreniz" asp-for="Password">
+                                    <span asp-validation-for="Password" class="text-warning"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Şifrenizi tekrardan giriniz" asp-for="PasswordConfirm">
+                                    <span asp-validation-for="PasswordConfirm" class="text-warning"></span>
+
+                                </div>
+                                <button class="btn login-form__btn submit w-100">Kayıt Ol</button>
+                            </form>
+                            <p class="mt-5 login-form__footer">Bir Hesabın Var mı? <a href="/Login/Index" class="text-primary">Oturum Aç </a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

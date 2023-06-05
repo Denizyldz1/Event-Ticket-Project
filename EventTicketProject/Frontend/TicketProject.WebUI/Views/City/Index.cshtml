@@ -1,0 +1,26 @@
+﻿@model List<CityViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Şehir Adı</th>
+        <th>Sil</th>
+        <th>GÜncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.CityId</th>
+            <td>@item.CityName</td>
+            <td><a href="/City/DeleteCity/@item.CityId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/City/UpdateCity/@item.CityId" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/City/AddCity" class="btn btn-info">Yeni Şehir Ekle</a>
+
+

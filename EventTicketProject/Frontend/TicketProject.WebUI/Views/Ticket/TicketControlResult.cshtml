@@ -1,0 +1,35 @@
+﻿@model TicketViewModel
+@{
+    ViewData["Title"] = "TicketControlResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ticket Numarası </th>
+        <th>Adı Soyadı</th>
+        <th>Organizasyon Adı</th>
+        <th>Organizasyon Tarihi</th>
+        <th>Geçerlilik Durumu</th>
+    </tr>
+
+    <tr>
+        <th>@Model.TicketNumber</th>
+        <td>@Model.NameSurname</td>
+        <td>@Model.Title</td>
+        <td>@Model.Date.ToString("yyyy-MM-dd")</td>
+        @if(Model.Status == true)
+        {
+            <td>Aktif</td>
+        }
+        else
+        {
+            <td>Geçersiz</td>
+        }
+    </tr>
+    }
+</table>
+<a href="/Ticket/TicketControl" class="btn btn-info">Yeni Bilet Sorgula</a>
+
+

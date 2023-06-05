@@ -1,0 +1,13 @@
+﻿@model TicketViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <label>Bilet Numarasını Giriniz</label>
+    <input type="text" asp-for="TicketNumber" class="form-control mb-2" />
+    <span asp-validation-for="TicketNumber" class="text-danger"></span>
+    <button class="btn btn-primary">Sorgula</button>
+
+</form>

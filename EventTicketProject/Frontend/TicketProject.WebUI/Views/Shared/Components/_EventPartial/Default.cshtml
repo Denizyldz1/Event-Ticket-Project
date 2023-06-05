@@ -1,0 +1,73 @@
+﻿<div class="card text-center">
+
+	<div class="card-body">
+		<h5 class="card-title">Oluşturulan Organizasyonlar</h5>
+		<p class="card-text">Oluşturulan etkinliklerin onay durumunu veya güncelleme iptal işlemlerini burada yapabilirsiniz.</p>
+	</div>
+</div>
+
+@if (ViewBag.ErrorMessage == null)
+{
+	<div class="blog" id="blog">
+		<div class="container mt-4 d-flex">
+			@foreach (var item in Model)
+			{
+				<div class="card m-3" style="width: 18rem;">
+					<img class="card-img-top" src="https://blog.obilet.com/wp-content/uploads/2023/04/image-13-1024x511.png" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">@item.Title</h5>
+						<p class="card-text">Kategori : @item.CategoryName</p>
+						<p class="card-text">Şehir : @item.CityName</p>
+						<p class="card-text">Etkinlik Sahibi : @item.FullName</p>
+						<p class="card-text">Etkinlik Statüsü : @item.Status</p>
+						<a href="#" data-toggle="modal" data-target="#@item.EventId" class="btn btn-primary">Detayları görüntüle</a>
+					</div>
+				</div>
+			}
+
+
+		</div>
+	</div>
+	@foreach (var item in Model)
+	{
+			<div class="modal fade bd-example-modal-lg" id="@item.EventId" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header d-flex flex-column">
+							<img class="img-fluid mb-3" src="https://blog.obilet.com/wp-content/uploads/2023/04/image-13-1024x511.png" alt="...">
+							<h5>@item.Title</h5>
+							<p>@item.Description</p>
+
+						</div>
+						<div class="modal-body">
+							<p class="card-text">Kategori : @item.CategoryName</p>
+							<p class="card-text">Şehir : @item.CityName</p>
+							<p class="card-text">Etkinlik Sahibi : @item.FullName</p>
+							<p class="card-text">Etkinlik Tarihi: @item.Date.ToString("dd.MM.yyyy")</p>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+						@if (DateTime.Now.Date.AddDays(5) > item.Date)
+						{
+							<p>Düzenleme yapılamaz</p>
+						}
+						else
+						{
+								<a href="/Login/EventCancel/@item.EventId" class="btn btn-primary">İptal Et</a>
+								<a href="/Default/UpdateEvent/@item.EventId" class="btn btn-primary">Düzenle</a>
+							}
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		
+	}
+}
+else
+{
+<h5 class="card-title">Aktif Etkinlik bulunumadı</h5>
+}

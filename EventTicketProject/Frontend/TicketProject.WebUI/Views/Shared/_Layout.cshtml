@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+@await Component.InvokeAsync("_HeadPartial")
+</head>
+<body id="page-top">
+
+    @await Component.InvokeAsync("_NavigationPartial")
+
+    @await Component.InvokeAsync("_HeaderPartial")
+   
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+ 
+    @await Component.InvokeAsync("_FooterPartial")
+
+    @await Component.InvokeAsync("_ScriptPartial")
+</body>
+</html>

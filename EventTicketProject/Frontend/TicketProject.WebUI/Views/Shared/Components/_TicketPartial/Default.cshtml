@@ -1,0 +1,44 @@
+﻿<div class="card text-center">
+
+	<div class="card-body">
+		<h5 class="card-title">Biletlerim</h5>
+		<p class="card-text">Bu sayfada sadece aktif biletlerini görüntüleyebilirsinz.</p>
+	</div>
+</div>
+@if (ViewBag.ErrorMessage == null)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>Ticket Numarası </th>
+            <th>Adı Soyadı</th>
+            <th>Organizasyon Adı</th>
+            <th>Organizasyon Tarihi</th>
+            <th>Geçerlilik Durumu</th>
+            <th>İptal Et</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+                <th>@item.TicketNumber</th>
+                <td>@item.NameSurname</td>
+                <td>@item.Title</td>
+                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                @if (item.Status == true)
+            {
+                <td>Aktif</td>
+            }
+            else
+            {
+                <td>Geçersiz</td>
+            }
+                <td><a href="/Login/TicketCancel/@item.TicketId" class="btn btn-primary">İptal Et</a></td>
+        </tr>
+        }
+    </table>
+	
+}
+else
+{
+	<h5 class="card-title">Aktif Etkinlik bulunumadı</h5>
+}
+

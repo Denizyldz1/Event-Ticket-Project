@@ -1,0 +1,81 @@
+﻿@model ProfileUserModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="col-12">
+
+        <div class="row">
+            <div class="card text-center">
+                <div class="card-header">
+                    Kişisel Bilgileri
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Sayın @Model.Name @Model.Surname</h5>
+                    <p class="card-text">Buradan sistemdeki kişisel bilgilerini görüntüleyip güncelleyebilirsiniz..</p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">Bilgilerimi Güncelle</button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            @await Component.InvokeAsync("_EventPartial")
+        </div>
+        <div class="row">
+            @await Component.InvokeAsync("_TicketPartial")
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="basicModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kişisel Bilgilerim</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    @Html.HiddenFor(x => x.Id)
+                    <label>Adınız</label>
+                    <input type="text" asp-for="Name" class="form-control mb-2" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <label>Soyadınız</label>
+                    <input type="text" asp-for="Surname" class="form-control mb-2" />
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                    <label>Adresiniz</label>
+                    <input type="text" asp-for="Address" class="form-control mb-2" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                    <label>Email adresiniz</label>
+                    <input type="email" asp-for="Email" class="form-control mb-2" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label>Şifremi Güncelle</label>
+                    <br />
+                    <label>Mevcut Şifreniz</label>
+                    <input type="password" asp-for="OldPassword" class="form-control mb-2" />
+                    <span asp-validation-for="OldPassword" class="text-danger"></span>
+                    <label>Yeni Şifreniz</label>
+                    <input type="password" asp-for="Password" class="form-control mb-2" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <label>Yeni Şifrenizi Tekrardan Giriniz </label>
+                    <input type="password" asp-for="PasswordConfirm" class="form-control mb-2" />
+                    <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+
+                    <button class="btn btn-primary">Bilgilerimi Güncelle</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
